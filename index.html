@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f419706906.js" crossorigin="anonymous"></script>
+    <title>Task Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Task Manager</h1>
+
+            <button class="add-btn" id="openModalBtn">
+                <i class="fa-solid fa-plus"></i> New Task
+            </button>
+        </header>
+
+        <section class="dashboard">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-clipboard-list"></i> 
+                    <h3>Total Tasks</h3>
+                </div>
+
+                <span id="totalTasks">0</span>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-ranking-star"></i>
+                    <h3>High Priority</h3>
+                </div>
+
+                <span id="highPriority">0</span>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                    <h3>Pending</h3>
+                </div>
+    
+                <span id="pendingTasks">0</span>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h3>Completed</h3>
+                </div>
+            
+                <span id="completedTasks">0</span>
+            </div>
+        </section>
+
+        <section class="controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter-btn" data-filter="high">
+                    High Priority
+                </button>
+
+                <button class="filter-btn" data-filter="pending">
+                    Pending
+                </button>
+
+                <button class="filter-btn" data-filter="completed">
+                    Completed
+                </button>
+            </div>
+
+            <div class="sort">
+                <label for="sortTasks">Sort by:</label>
+
+                <select id="sortTasks">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="priority">Priority</option>
+                    <option value="dueDate">Due Date</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="tasks-grid" id="tasksContainer">
+
+            <div class="empty-state hidden" id="emptyState">
+               <i class="fa-solid fa-magnifying-glass"></i>
+               <h3>No tasks found</h3>
+               <p>Try a different search or filter.</p>
+            </div>
+ 
+        </section>
+
+        <div class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Add a New Task</h2>
+
+                    <button class="close-btn" id="closeModalBtn" type="button">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title</label>
+
+                        <input type="text" id="taskTitle" placeholder="Enter task title..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskDescription">Task Description</label>
+
+                        <textarea id="taskDescription" placeholder="Describe what you need to do..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskPurpose">Purpose</label>
+
+                        <textarea id="taskPurpose" placeholder="Why is this task important?" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskMotivation">Motivation</label>
+
+                        <textarea id="taskMotivation" placeholder="What will keep you motivated?" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="growthCheck">Growth Check</label>
+
+                        <textarea id="growthCheck" placeholder="Add after completing the task...?"></textarea>
+
+                        <small>You can add what you learned after completing this task.</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskPriority">Priority</label>
+
+                            <select id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date</label>
+
+                            <input type="date" id="taskDueDate">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="addTaskBtn">Add Task</button>
+                </form> 
+            </div>
+        </div>
+
+        <div class="toast hidden" id="toast">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="toastMessage">Task deleted successfully!</span>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
